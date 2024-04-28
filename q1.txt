@@ -1,0 +1,56 @@
+initState() is used for one-time initialization tasks, whereas setState() is used to update the state of the widget and trigger a rebuild of the UI.
+
+ex of initState():
+
+class MyWidget extends StatefulWidget {
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  int counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    counter = 40;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text('Counter: $counter'),
+    );
+  }
+}
+
+ex of setState():
+
+class MyWidget extends StatefulWidget {
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  int counter = 0;
+
+  void incrementCounter() {
+    setState(() {
+      counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('Counter: $counter'),
+        RaisedButton(
+          onPressed: incrementCounter,
+          child: Text('Increment'),
+        ),
+      ],
+    );
+  }
+}
+
